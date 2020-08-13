@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 ﻿using System;
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using System;
+>>>>>>> origin/master
 using TouchScript.Gestures;
 using UnityEngine;
 
@@ -9,7 +15,10 @@ public class GestureScript : MonoBehaviour
     public static int tap;
     void Start(){
         flick = 0;
+<<<<<<< HEAD
         tap = 0;
+=======
+>>>>>>> origin/master
     }
     void OnEnable()
     {

@@ -1,12 +1,24 @@
+<<<<<<< HEAD
 ﻿using Photon.Pun;
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+>>>>>>> origin/master
 using TouchScript.Gestures;
 using UnityEngine;
 using System;
 
+<<<<<<< HEAD
 public class TouchReactScript : MonoBehaviourPunCallbacks {
 
     public GameObject player;
     public bool shot = false, jump = false;
+=======
+public class TouchReactScript : MonoBehaviour {
+
+    public int movex;
+    public GameObject player;
+>>>>>>> origin/master
 
     void OnEnable()
     {
@@ -22,10 +34,14 @@ public class TouchReactScript : MonoBehaviourPunCallbacks {
 
     void OnTapped( object sender, EventArgs e )
     {
+<<<<<<< HEAD
         shot = true;
         //player = GameObject.FindGameObjectWithTag("Player1");
         //photonView.RPC(nameof(player.GetComponent<>().Shot), RpcTarget.All, ++player.projectileId);
         /*
+=======
+        player = GameObject.FindGameObjectWithTag("Player1");
+>>>>>>> origin/master
         switch (player.name){
             case "CharaA(Clone)":
             player.GetComponent<CharaAScript>().Shot();
@@ -42,6 +58,7 @@ public class TouchReactScript : MonoBehaviourPunCallbacks {
             default:
             break;
         }
+<<<<<<< HEAD
          */
         //print("unchi!");
     }
@@ -49,6 +66,11 @@ public class TouchReactScript : MonoBehaviourPunCallbacks {
     void OnFlicked(object sender, EventArgs e){
         jump = true;
         /*
+=======
+    }
+
+    void OnFlicked(object sender, EventArgs e){
+>>>>>>> origin/master
         player = GameObject.FindGameObjectWithTag("Player1");
         switch (player.name){
             case "CharaA(Clone)":
@@ -66,6 +88,9 @@ public class TouchReactScript : MonoBehaviourPunCallbacks {
             default:
             break;
         }
+<<<<<<< HEAD
          */
+=======
+>>>>>>> origin/master
     }
 }

@@ -1,9 +1,22 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9a7ce562d3b43b441874eaa9d4e8a4b5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
+=======
+guid: ad4afe368ae2afd47bbaeaa5d3b8298c
+timeCreated: 1494380335
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - rb2d: {instanceID: 0}
+  - Bullet: {fileID: 1439582601298768, guid: 06ae5c54fe6f5b24b85b34e8be11cd47, type: 2}
+  - Kuso: {fileID: 1653308284411314, guid: 0a8b7132066067640b1fb1cd67f2aa4e, type: 2}
+  - hisan: {instanceID: 0}
+>>>>>>> origin/master
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

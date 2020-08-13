@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 ﻿using UnityEngine;
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+>>>>>>> origin/master
 
 public class ButtonScript : MonoBehaviour
 {

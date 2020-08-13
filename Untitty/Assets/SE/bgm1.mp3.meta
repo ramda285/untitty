@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: 99e49195087add84c897f0c76d5447d7
+<<<<<<< HEAD
 AudioImporter:
   externalObjects: {}
+=======
+timeCreated: 1510935211
+licenseType: Free
+AudioImporter:
+>>>>>>> origin/master
   serializedVersion: 6
   defaultSettings:
     loadType: 0
     sampleRateSetting: 0
     sampleRateOverride: 44100
     compressionFormat: 1
+<<<<<<< HEAD
     quality: 0.35999998
+=======
+    quality: 1
+>>>>>>> origin/master
     conversionMode: 0
   platformSettingOverrides: {}
   forceToMono: 0
