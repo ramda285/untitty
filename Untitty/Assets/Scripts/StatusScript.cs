@@ -5,7 +5,6 @@ using UnityEngine;
 public class StatusScript: MonoBehaviour {
     public float longs,x,mx;
     float t,moves;
-<<<<<<< HEAD
     public GameObject chara;
     ChooseScript scr;
     bool button;
@@ -39,18 +38,6 @@ public class StatusScript: MonoBehaviour {
 
 
 /*
-=======
-    public GameObject Hand;
-    bool button;
-	// Use this for initialization
-	void Start () {
-        longs = 30;
-        moves = 20;
-    }
-	
-	// Update is called once per frame
-	void Update () {/*
->>>>>>> origin/master
         mx = Input.GetAxisRaw("Horizontal");
         if ((-0.05f>mx || mx > 0.05) && button==true)
         {
@@ -78,13 +65,6 @@ public class StatusScript: MonoBehaviour {
         if (-0.05f < mx && mx < 0.05)
         {
             button = true;
-<<<<<<< HEAD
         }*/
-=======
-        }
-        t++;
-        x = moves * Mathf.Exp(-0.1f * t) * Mathf.Cos(0.4f * t) + longs;
-        transform.localScale = new Vector3(x/3,5,1);*/
->>>>>>> origin/master
 	}
 }

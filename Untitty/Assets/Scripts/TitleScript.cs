@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,30 +12,10 @@ public class TitleScript : MonoBehaviourPunCallbacks {
     public GameObject hitori, minna, config, insart;    //各ボタン
     public GameObject ComonO;   //ComonGameObject
     new AudioSource audio;
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class TitleScript : MonoBehaviour {
-    float t, t2 = 44;      //文字の回転、
-    bool dl;         //明るくする
-    bool first;
-    int scene;      //シーン遷移
-    int n,n2;       //頭悪いスイッチ管理
-    GameObject screen;
-    public GameObject hitori, minna, config, insart;
-    public static int selectmode;
-    static public AudioClip sentaku,kime;
-    private AudioSource audio;
->>>>>>> origin/master
     //selectmodeについて・・・0,ひとり　1,みんな　2,コンフィグ
 
 	// Use this for initialization
 	void Start () {
-<<<<<<< HEAD
         if(PlayerPrefs.GetInt("Tutorial") != 1){
             SceneManager.LoadScene(6);
         }
@@ -48,31 +27,14 @@ public class TitleScript : MonoBehaviour {
         audio = GetComponent<AudioSource>();
         t = 30;
         dl = false;
-=======
-		screen = GameObject.Find("Screen");
-        audio = GetComponent<AudioSource>();
-        t = 30;
-        dl = false;
-        first = false;
-        n2=1;
->>>>>>> origin/master
 	}
 	
 	// Update is called once per frame
 	void Update () {
         ComonScript.Getting(dl,scene);
-<<<<<<< HEAD
         if (first){
             if(insart != null){
                 Destroy(insart);
-=======
-        if(Input.GetMouseButtonDown(0))
-            first = true;
-        if (first){
-            if(insart != null){
-                Destroy(insart);
-                n=1;
->>>>>>> origin/master
             }
             if(t >= 0){
                 t--;
@@ -80,7 +42,6 @@ public class TitleScript : MonoBehaviour {
                 minna.transform.Rotate(0,-3f,0);
                 config.transform.Rotate(0,-3f,0);
             }
-<<<<<<< HEAD
             if(hitori.GetComponent<ButtonScript>().button == true){
                 hitori.GetComponent<ButtonScript>().button = false;
                 dl = true;
@@ -115,43 +76,11 @@ public class TitleScript : MonoBehaviour {
 
 
 /*過去の設定(文化祭用四人プレイ)
-=======
-            if(n2==1){
-                if(hitori.GetComponent<ButtonScript>().button == true){
-                    dl = true;
-                    scene = 1;
-                    n=1;
-                    n2=0;
-                }
-                if(minna.GetComponent<ButtonScript>().button == true){
-                    dl = true;
-                    scene = 1;
-                    n=1;
-                    n2=0;
-                }
-                if(config.GetComponent<ButtonScript>().button == true){
-                    dl = true;
-                    scene = 2;
-                    n=1;
-                    n2=0;
-                }
-            }
-            
-        }
-        PlaySE(n);
-        n=0;
-    }
-
->>>>>>> origin/master
     void PlaySE(int n){
         if(n==1)
         audio.Play();
     }
 
-<<<<<<< HEAD
-=======
-/* 
->>>>>>> origin/master
     void secondchoice() {
         if (t2 >= 0) {
             hitori.transform.Rotate(0, 0, 0);

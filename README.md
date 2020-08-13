@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿# うんちっち
 
 Androidアプリケーション
@@ -30,6 +29,3 @@ CharaScript.cs参照
 ### 使用したライブラリ
 Photon Network  
 Touch Script 
-=======
-# untitty
->>>>>>> origin/master

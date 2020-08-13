@@ -52,10 +52,6 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true
-<<<<<<< HEAD
     },
     "git.ignoreLimitWarning": true
-=======
-    }
->>>>>>> origin/master
 }
