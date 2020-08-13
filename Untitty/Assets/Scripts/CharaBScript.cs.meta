@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: dab63ec43b653d048a393f11ec4ad556
+timeCreated: 1494380368
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - rb2d: {instanceID: 0}
+  - Bullet: {instanceID: 0}
+  - Kuso: {instanceID: 0}
+  - hisan: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
