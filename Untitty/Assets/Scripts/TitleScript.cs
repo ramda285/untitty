@@ -16,6 +16,7 @@ public class TitleScript : MonoBehaviourPunCallbacks {
 
 	// Use this for initialization
 	void Start () {
+        Application.targetFrameRate = 60;
         if(PlayerPrefs.GetInt("Tutorial") != 1){
             SceneManager.LoadScene(6);
         }
