@@ -21,6 +21,8 @@ public class BattleScript : MonoBehaviour {
     public AudioClip gob;
 
     void Start () {
+        //デバッグ用
+        Application.targetFrameRate = 60;
         tm = go.GetComponent<TextMesh>();
         auso = GetComponent<AudioSource>();
         switch (ChooseScript.chara % 8)

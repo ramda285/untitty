@@ -15,71 +15,85 @@ class CPUScript : MonoBehaviour {
     public AudioClip tyakuti;
     public AudioClip bomb;
     public AudioClip bobobo;
-    float mx,my,ex,ey;
-
+    //移動に使用
+    public int maai = 0; //間合い
+    public int mtime = 0; //間合い変更
+	public int hani = 10;	//敵察知範囲
+    float mx,my,ex,ey;  //位置の特定
     bool jump = false , dead = false;
 	int toward = 1;	//向き
 	int Sroop = 0;	//発射速度
 	int jtime = 0;	//ジャンプ猶予
-	int maai = 0; //間合い
-    int mtime = 0; //間合い変更
-	int hani = 10;	//敵察知範囲
     private int projectileId = 0;
 	int t;
+    //難易度は0雑魚,1普通,2強い
 
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
         auso = GetComponent<AudioSource>();
-        //enemy = GameObject.Find("CharaA");
         enemy = GameObject.FindWithTag("Player1");
         manager = GameObject.FindWithTag("Manager");
         kusodas = GameObject.Find("Kusodas");
 	}
 
-    public void Update()
-    {
+    public void Update(){
+        //m：自機（こいつ）、e：敵機（プレイヤー）
         mx = transform.position.x;
         my = transform.position.y;
         ex = enemy.transform.position.x;
         ey = enemy.transform.position.y;
 
-        //ロジック変更
-        mtime--;
-        if (mtime <= 0)
-        {
-            mtime = Random.Range(50, 100);
-            maai = Random.Range(2, 10);  //間合いの距離
-            hani = Random.Range(4, 8);	//敵察知の距離
-            if(ComonScript.nanid == 0)
-            {
-                maai = Random.Range(5, 10);
-                hani = Random.Range(10, 15);
-            }
+        //向き
+        if (mx < ex){
+            toward = 1;
+        }else{
+            toward = -1;
         }
 
-        if (dead == false)
-        {
-            if(ComonScript.nanid != 3){
-            if (jump == true)
-            {
-                if (Mathf.Abs(mx - ex) > maai || (30 - Mathf.Abs(mx - ex) < maai))
-                {
-                    Move(true, 0.07f);     //間合いより遠い
-                }
-                else if (Mathf.Abs(mx - ex) < maai || 30 - Mathf.Abs(mx - ex) > maai)
-                {
-                    Move(false, 0.07f);    //間合いより近い
+        if (dead == false){
+            //ロジック変更
+            mtime--;
+            if (mtime <= 0){
+                mtime = Random.Range(50, 100);
+                maai = Random.Range(2, 10);  //間合いの距離
+                hani = Random.Range(4, 8);	//敵察知の距離
+                if(ComonScript.nanid == 0){
+                    maai = Random.Range(5, 10);
+                    hani = Random.Range(10, 15);
                 }
             }
+            
+            //間合いに合わせた移動
+            if (jump == true){
+                //壁をはさまない
+                if (ComonScript.nanid == 0 || Mathf.Abs(mx - ex) < 15){
+                    //間合いより遠い
+                    if (Mathf.Abs(mx - ex) > maai + 1){
+                        Move(true, 0.07f);  //近づく
+                        //print("近づき");
+                    }else if (Mathf.Abs(mx - ex) < maai - 1){
+                        Move(false, 0.07f);    //遠のく
+                        //print("遠のき");
+                    }
+                //壁を挟む
+                }else{
+                    toward *= -1;
+                    if (30 - Mathf.Abs(mx - ex) < maai - 1){
+                        Move(false, 0.07f);  //近づく
+                        //print("壁近づき");
+                    }else if (30 - Mathf.Abs(mx - ex) > maai + 1){
+                        Move(true, 0.07f);    //遠のく
+                        //print("壁遠のき");
+                    }
+                }
+                
+            }
+
             //敵察知
-            if (((mx < ex + hani) && (mx > ex - hani)) || (30 - Mathf.Abs(mx - ex) < hani))
-            {
-                //Debug.Log(Mathf.Abs(mx - ex));
+            if ((Mathf.Abs(mx - ex) < hani) || (30 - Mathf.Abs(mx - ex) < hani)){
                 //ショット機能
-                if (my > ey + 1)
-                {
-                    if (Sroop > 8)
-                    {
+                if (my > ey + 1){
+                    if (Sroop > 8){
                         Shot(++projectileId);
                         //難易度分岐
                         if (ComonScript.nanid == 0)
@@ -91,12 +105,10 @@ class CPUScript : MonoBehaviour {
                     }
                     Sroop++;
                 //ジャンプ
-                }
-                else if ((my <= ey + 2) && (my >= ey - 1) && (jump == true) && (jtime <= 0))
-                {
+                }else if ((my <= ey + 2) && (my >= ey - 3) && (jump == true) && (jtime <= 0)){
                     Jump();
                 //逃げる
-                }else if (my < ey - 0.8)
+                }else if (my < ey - 1)
                 //else if ((my < ey - 0.8) && (TitleScript.selectmode == 5))
                 {
                     //難易度分岐
@@ -106,10 +118,9 @@ class CPUScript : MonoBehaviour {
                         Move(false, 0.05f);
                     print("特別逃げシステム");
                 }
-            }}
+            }
         }
-        else
-        {
+        else{
            //Handheld.Vibrate ();
            ComonScript.Shaking();
 			kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8.0f,8.0f),Random.Range(4.0f,16.0f)), Kuso.GetComponent<ShotScript>());
@@ -120,16 +131,6 @@ class CPUScript : MonoBehaviour {
                 }
                 Destroy(gameObject);
             }
-        }
-
-            //向き
-        if (mx < ex)
-        {
-            toward = 1;
-        }
-        else
-        {
-            toward = -1;
         }
 
             //ジャンプ猶予
@@ -170,7 +171,6 @@ class CPUScript : MonoBehaviour {
         if(ComonScript.nanid == 2)
             rb2d.AddForce(new Vector2(toward * 4.5f, 7) * 100);
 		jump = false;
-		//}
 	}
 
 	void Death () {
@@ -181,13 +181,13 @@ class CPUScript : MonoBehaviour {
 	}
 
 	void Move (bool x,float y) {
-		if (x == true){			//進む
+		if (x == true){			//近づく
 			if (toward == 1){	//右向き
 				transform.position += Vector3.right * y;
 			}else{				//左向き
 				transform.position += Vector3.left * y;
 			}
-		}else{					//戻る
+		}else{					//遠のく
 			if (toward == 1){	//右向き
 				transform.position += Vector3.left * y;
 			}else{				//左向き

@@ -54,7 +54,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 		if (this.dead){
 			//Handheld.Vibrate();
 			ComonScript.Shaking();
-			kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+			kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
 			this.t+=Time.deltaTime*60;
 			if (this.t >= 100){
 				//this.t = 100;
@@ -165,7 +165,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 			photonView.RPC(nameof(Death), RpcTarget.All);
 		}
 		if (component.OwnerId == -1){
-			this.Death();
+			//this.Death();
 		}
 	}
 

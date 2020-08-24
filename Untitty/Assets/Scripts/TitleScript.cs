@@ -11,6 +11,7 @@ public class TitleScript : MonoBehaviourPunCallbacks {
     public static bool minnamode = false;   //オンラインbool
     public GameObject hitori, minna, config, insart;    //各ボタン
     public GameObject ComonO;   //ComonGameObject
+    public GameObject Kuso;
     new AudioSource audio;
     //selectmodeについて・・・0,ひとり　1,みんな　2,コンフィグ
 
@@ -33,6 +34,10 @@ public class TitleScript : MonoBehaviourPunCallbacks {
 	// Update is called once per frame
 	void Update () {
         ComonScript.Getting(dl,scene);
+        //ウンチを降らせる
+
+
+        //タイトルボタン
         if (first){
             if(insart != null){
                 Destroy(insart);

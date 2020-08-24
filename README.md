@@ -29,3 +29,4 @@ CharaScript.cs参照
 ### 使用したライブラリ
 Photon Network  
 Touch Script 
+https://github.com/OctoClo/Shaders.git

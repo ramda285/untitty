@@ -29,7 +29,7 @@ public class ShotManageScript : MonoBehaviour
         var projectile = (inactivePool.Count > 0)
             ? inactivePool.Pop()
             : Instantiate(projectilePrefab, transform);
-        projectile.Activate(id, ownerId, origin, three);
+        projectile.Activate(id, ownerId, origin + Vector3.forward, three);
         activeList.Add(projectile);
     }
 
