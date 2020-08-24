@@ -22,6 +22,7 @@ public class BattleScript : MonoBehaviour {
 
     void Start () {
         //デバッグ用
+        ComonScript.shakestop = false;
         Application.targetFrameRate = 60;
         tm = go.GetComponent<TextMesh>();
         auso = GetComponent<AudioSource>();
@@ -58,8 +59,7 @@ public class BattleScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         ComonScript.Getting(dl,1);
         t++;
         if (t > 0 && t < 20)
@@ -80,10 +80,6 @@ public class BattleScript : MonoBehaviour {
             Playercl.tag = "Player1";
             Playercl2 = Instantiate(Player2, new Vector3(7, 7, -1), Quaternion.identity) as GameObject;    
             Playercl2.tag = "Player2";
-            //if (Player2.name == "CharaPU") {
-            //    p2c = true;
-            //}
-            //Player2cl.tag = "Player2";
         }
         if (t >= 50)
         {
@@ -113,8 +109,7 @@ public class BattleScript : MonoBehaviour {
                 dn++;
             }
             */
-            if (dn >= 1)
-            {
+            if (dn >= 1){
                 End();
                 at++;
                 bgm.volume -= 0.02f;
@@ -123,8 +118,15 @@ public class BattleScript : MonoBehaviour {
     }
 
     public void End() {
-        if (at == 100)
-        {
+        if (at < 50){
+            Camera.main.transform.position -= (Camera.main.transform.position - Vector3.zero + Vector3.forward * 10)/10;
+            if(Camera.main.orthographicSize < 7f){
+                Camera.main.orthographicSize += 0.2f;
+            }else if(Camera.main.orthographicSize > 7f){
+                Camera.main.orthographicSize = 7f;
+            }
+        }
+        if (at == 100){
             auso.PlayOneShot(tin);
             tm.fontSize = 25;
             tm.transform.position = new Vector3(-10f, 4f, -1);

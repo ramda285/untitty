@@ -92,7 +92,7 @@ class CPUScript : MonoBehaviour {
             //敵察知
             if ((Mathf.Abs(mx - ex) < hani) || (30 - Mathf.Abs(mx - ex) < hani)){
                 //ショット機能
-                if (my > ey + 1){
+                if (my > ey + 0.1f){
                     if (Sroop > 8){
                         Shot(++projectileId);
                         //難易度分岐

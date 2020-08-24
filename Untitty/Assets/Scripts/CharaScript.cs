@@ -32,6 +32,8 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
     public int toward = 1;
     //死亡時タイマー
 	float t;
+	//シェーダーかけるフレーム
+	float cametime = 0;
 	
 
 	void Awake()
@@ -52,12 +54,30 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 
 	public void Move(){
 		if (this.dead){
+			if(cametime < 0.05f){
+				cametime += Time.deltaTime;
+			}else{
+				Camera.main.GetComponent<PP>().enabled = false;
+			}
+			Time.fixedDeltaTime = 0.02f * Time.timeScale;
 			//Handheld.Vibrate();
 			ComonScript.Shaking();
-			kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
 			this.t+=Time.deltaTime*60;
+			//スローにする
+			if (t > 95){
+				ComonScript.shakestop = true;
+				Time.timeScale = 0.07f;
+				print(Camera.main.transform.position);
+				Camera.main.transform.position -= new Vector3((Camera.main.transform.position.x - this.transform.position.x)/10,(Camera.main.transform.position.y - this.transform.position.y)/10,0);
+				Camera.main.orthographicSize -= 0.08f;
+			//スロー中はくそを出さない（出したらもそっと出る）
+			}else{
+				kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+			}
 			if (this.t >= 100){
-				//this.t = 100;
+				this.t = 100;
+				Time.timeScale = 1f;
+				Time.fixedDeltaTime = 0.02f * Time.timeScale;
 				while (this.t < 180){
 					kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
 					this.t++;
@@ -132,6 +152,8 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	public void Death(){
 		if (dead == false){
 			this.auso.PlayOneShot(this.bobobo);
+			//カメラネガ
+			Camera.main.GetComponent<PP>().enabled = true;
 		}
 		this.rb2d.isKinematic = false;
 		this.dead = true;
@@ -165,7 +187,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 			photonView.RPC(nameof(Death), RpcTarget.All);
 		}
 		if (component.OwnerId == -1){
-			//this.Death();
+			this.Death();
 		}
 	}
 

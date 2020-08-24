@@ -90,10 +90,10 @@
      <Compile Include="Assets\TouchScript\Editor\TouchManagerEditor.cs" />
      <Compile Include="Assets\TouchScript\Editor\Behaviors\TransformerEditor.cs" />
      <Compile Include="Assets\TouchScript\Editor\TouchScriptSettingsWindow.cs" />
+     <Compile Include="Assets\Shaders\_Project\Scripts\Editor\AnimationCaptureHelperEditor.cs" />
      <Compile Include="Assets\TouchScript\Modules\TUIO\Editor\InputSources\TuioInputEditor.cs" />
      <Compile Include="Assets\TouchScript\Editor\Gestures\ReleaseGestureEditor.cs" />
      <Compile Include="Assets\Editor\Creator.cs" />
-     <Compile Include="Assets\Shaders\_Project\Scripts\Editor\AnimationCaptureHelperEditor.cs" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>

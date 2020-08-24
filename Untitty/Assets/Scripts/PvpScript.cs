@@ -21,6 +21,7 @@ public class PvpScript : MonoBehaviourPunCallbacks {
     public AudioClip bon;
     public AudioClip gob;
     public AudioClip donichi;
+    //but1:キャラ生成、but2:、but3:
     bool but1,but2,but3;
 
     void Start () {
@@ -66,29 +67,25 @@ public class PvpScript : MonoBehaviourPunCallbacks {
             default:
                 break;
         }
-        //if(PhotonScript.king == 1 || PhotonNetwork.LocalPlayer.CustomProperties["KING"] == 1)
-        //    bgm.clip = donichi;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-            //pos = Random.Range(1,2);
+    void Update(){
         ComonScript.Getting(dl,mode);
         t+=Time.deltaTime*60;
-        if (t > 0 && t < 50)
-        {
+        //壁
+        if (t > 0 && t < 50){
             rw.transform.position += Vector3.right * 1.2f;
             lw.transform.position += Vector3.left * 1.2f;
         }
-        if (t > 30 && t < 120)
-        {
+        //GO
+        if (t > 30 && t < 120){
             tm.fontSize += 3;
             tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, 1 - (t - 40) * 0.02f);
             tm.transform.position = new Vector3(-t/6f+2.5f,t/6f-4f,-1);
         }
-        if (t >= 20 && but1 == false)
-        {
+        //キャラ生成（デルタタイムにしているためスイッチの方式をとっている）
+        if (t >= 20 && but1 == false){
             auso.PlayOneShot(gob);
             if(PhotonNetwork.LocalPlayer.IsMasterClient){
                 Playercl = PhotonNetwork.Instantiate(Player.name, new Vector3(-7, 7, -1), Quaternion.identity) as GameObject;    
@@ -99,14 +96,13 @@ public class PvpScript : MonoBehaviourPunCallbacks {
             Playercl.tag = "Player1";
             but1 = true;
         }
-        if (t > 50)
-        {
-            if (someonesdeath)
-            {
+        if (t > 50){
+            if (someonesdeath){
                 auso.PlayOneShot(bon);
                 someonesdeath = false;
                 dn++;
             }
+            //エラー
             if(PhotonNetwork.CurrentRoom.PlayerCount != 2 && dn == 0){
                 tm.fontSize = 25;
                 tm.transform.position = new Vector3(-10f, 4f, -1);

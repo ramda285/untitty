@@ -9,6 +9,9 @@ public class ComonScript : MonoBehaviour
     static float a,x;
     public static float kando = 1.0f;
     public static int nanid = 1;
+    public static bool shakestop = false;
+    //カメラをネガ
+    static bool camerabut = false;
 
     // Use this for initialization
     void Awake () {
@@ -19,8 +22,8 @@ public class ComonScript : MonoBehaviour
         DontDestroyOnLoad (this);
     }
 	
-	// ＥＳＣによるゲーム終了と画面のフェードイン、アウトを行う
 	void Update () {
+        //ＥＳＣによるゲーム終了
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			if (SceneManager.GetActiveScene().name == "title"){
 				Application.Quit();
@@ -29,11 +32,15 @@ public class ComonScript : MonoBehaviour
                 ComonScript.Getting(true, 0);
 			}
 		}
-        Camera.main.transform.position = new Vector3(Random.Range(-1*x,x), Random.Range(-1*x,x),-10);
-        if(x>0){
-            x -= 0.005f;
-        }else{
-            x=0;
+
+        //カメラシェイク
+        if (shakestop == false){
+            Camera.main.transform.position = new Vector3(Random.Range(-1*x,x), Random.Range(-1*x,x),-10);
+            if(x>0){
+                x -= 0.005f;
+            }else{
+                x=0;
+            }
         }
 	}
 
