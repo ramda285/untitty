@@ -6,6 +6,8 @@ using Photon.Pun;
 public class TitleScript : MonoBehaviourPunCallbacks {
     float t;      //文字の回転、
     bool dl;         //明るくする
+    public int kusofall = 0;       //くそを落とす時間
+    public static int kusosum = 0;      //くその合計
     static bool first = false;  //インサート文の表示
     private int scene = 2;      //シーン遷移
     public static bool minnamode = false;   //オンラインbool
@@ -35,7 +37,12 @@ public class TitleScript : MonoBehaviourPunCallbacks {
 	void Update () {
         ComonScript.Getting(dl,scene);
         //ウンチを降らせる
-
+        kusofall--;
+        if (kusofall < 0){
+            Instantiate(Kuso, new Vector3(0, 8, 0), Quaternion.identity);
+            kusofall = Random.Range(500,1200);
+            kusosum++;
+        }
 
         //タイトルボタン
         if (first){

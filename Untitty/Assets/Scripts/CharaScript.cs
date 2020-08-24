@@ -34,7 +34,6 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	float t;
 	//シェーダーかけるフレーム
 	float cametime = 0;
-	
 
 	void Awake()
 	{
@@ -53,31 +52,38 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	}
 
 	public void Move(){
+		//死んでいる場合
 		if (this.dead){
+			//0.5秒だけネガ
 			if(cametime < 0.05f){
 				cametime += Time.deltaTime;
 			}else{
 				Camera.main.GetComponent<PP>().enabled = false;
 			}
+			//フレーム
 			Time.fixedDeltaTime = 0.02f * Time.timeScale;
+			//バイブ
 			//Handheld.Vibrate();
+			//画面揺れ
 			ComonScript.Shaking();
+			//時間
 			this.t+=Time.deltaTime*60;
-			//スローにする
+			//残り5フレームでスローにする
 			if (t > 95){
 				ComonScript.shakestop = true;
 				Time.timeScale = 0.07f;
-				print(Camera.main.transform.position);
+				//カメラを移動、ズームイン
 				Camera.main.transform.position -= new Vector3((Camera.main.transform.position.x - this.transform.position.x)/10,(Camera.main.transform.position.y - this.transform.position.y)/10,0);
 				Camera.main.orthographicSize -= 0.08f;
-			//スロー中はくそを出さない（出したらもそっと出る）
 			}else{
+				//スロー中はくそを出さない（出したらもそっと出る）
 				kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
 			}
+			//爆散
 			if (this.t >= 100){
-				this.t = 100;
 				Time.timeScale = 1f;
 				Time.fixedDeltaTime = 0.02f * Time.timeScale;
+				//80個のう〇こ
 				while (this.t < 180){
 					kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
 					this.t++;
@@ -89,12 +95,17 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 			}
 			return;
 		}
+
+		//オンラインでは自機のみ操作
 		if (!TitleScript.minnamode || base.photonView.IsMine){
+			//傾きでジャンプ方向変化
 			if (this.mx > 0f){
 				this.toward = 1;
 			}else if (this.mx < 0f){
 				this.toward = -1;
 			}
+
+			//スマホ傾け移動
 			if ((double)Mathf.Abs((float)System.Math.Round((double)Input.acceleration.x, 3) * ComonScript.kando) <= 0.1){
 				this.mx = 0f;
 			}else if ((double)Mathf.Abs((float)System.Math.Round((double)Input.acceleration.x, 3) * ComonScript.kando) < 0.5){
@@ -104,13 +115,17 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 			}else if (System.Math.Round((double)Input.acceleration.x, 3) * (double)ComonScript.kando >= 0.5){
 				this.mx = 10f;
 			}
+			//デバッグ用キー移動
 			if (Input.GetKey(KeyCode.RightArrow)){
 				this.mx = 5f * ComonScript.kando;
 			}
 			if (Input.GetKey(KeyCode.LeftArrow)){
 				this.mx = -5f * ComonScript.kando;
 			}
+
+			//ショット
 			if (this.touch.GetComponent<TouchReactScript>().shot || Input.GetButtonUp("Fire")){
+				//オンラインではRPC
 				if (TitleScript.minnamode){
                     photonView.RPC(nameof(Shot), RpcTarget.All, ++projectileId, photonView.OwnerActorNr);
 				}else{
@@ -118,7 +133,10 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 				}
                 this.touch.GetComponent<TouchReactScript>().shot = false;
 			}
+
+			//ジャンプ
             if (this.touch.GetComponent<TouchReactScript>().jump || Input.GetButtonUp("Jump")){
+				//オンラインではRPC
 				if (TitleScript.minnamode){
                     photonView.RPC(nameof(Jump), RpcTarget.All);
 				}else{
@@ -126,7 +144,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 				}
 				this.touch.GetComponent<TouchReactScript>().jump = false;
 			}
-
+			//移動
 			if (jump){
 				transform.position += new Vector3(mx * speed * Time.deltaTime*60, 0f, 0f);
 			}

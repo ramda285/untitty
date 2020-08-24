@@ -25,10 +25,11 @@ class CPUScript : MonoBehaviour {
 	int Sroop = 0;	//発射速度
 	int jtime = 0;	//ジャンプ猶予
     private int projectileId = 0;
-	int t;
+	float t;
+	float cametime = 0;
     //難易度は0雑魚,1普通,2強い
 
-	void Start () {
+	void Awake () {
 		rb2d = GetComponent<Rigidbody2D>();
         auso = GetComponent<AudioSource>();
         enemy = GameObject.FindWithTag("Player1");
@@ -37,20 +38,61 @@ class CPUScript : MonoBehaviour {
 	}
 
     public void Update(){
-        //m：自機（こいつ）、e：敵機（プレイヤー）
-        mx = transform.position.x;
-        my = transform.position.y;
-        ex = enemy.transform.position.x;
-        ey = enemy.transform.position.y;
+        if (dead){
+			//0.5秒だけネガ
+			if(cametime < 0.05f){
+				cametime += Time.deltaTime;
+			}else{
+				Camera.main.GetComponent<PP>().enabled = false;
+			}
+			//フレーム
+			Time.fixedDeltaTime = 0.02f * Time.timeScale;
+			//バイブ
+			//Handheld.Vibrate();
+			//画面揺れ
+			ComonScript.Shaking();
+			//時間
+			this.t+=Time.deltaTime*60;
+			//残り5フレームでスローにする
+			if (t > 95){
+				ComonScript.shakestop = true;
+				Time.timeScale = 0.07f;
+				//カメラを移動、ズームイン
+				Camera.main.transform.position -= new Vector3((Camera.main.transform.position.x - this.transform.position.x)/10,(Camera.main.transform.position.y - this.transform.position.y)/10,0);
+				Camera.main.orthographicSize -= 0.08f;
+			}else{
+				//スロー中はくそを出さない（出したらもそっと出る）
+				kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+			}
+			//爆散
+			if (this.t >= 100){
+				Time.timeScale = 1f;
+				Time.fixedDeltaTime = 0.02f * Time.timeScale;
+				//80個のう〇こ
+				while (this.t < 180){
+					kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+					this.t++;
+				}
+				if (this.manager.GetComponent<PvpScript>() != null){
+					this.manager.GetComponent<PvpScript>().someonesdeath = true;
+				}
+				DestroyImmediate(base.gameObject, true);
+			}
+			return;
+		}else{
+            //m：自機（こいつ）、e：敵機（プレイヤー）
+            mx = transform.position.x;
+            my = transform.position.y;
+            ex = enemy.transform.position.x;
+            ey = enemy.transform.position.y;
 
-        //向き
-        if (mx < ex){
-            toward = 1;
-        }else{
-            toward = -1;
-        }
+            //向き
+            if (mx < ex){
+                toward = 1;
+            }else{
+                toward = -1;
+            }
 
-        if (dead == false){
             //ロジック変更
             mtime--;
             if (mtime <= 0){
@@ -70,20 +112,16 @@ class CPUScript : MonoBehaviour {
                     //間合いより遠い
                     if (Mathf.Abs(mx - ex) > maai + 1){
                         Move(true, 0.07f);  //近づく
-                        //print("近づき");
                     }else if (Mathf.Abs(mx - ex) < maai - 1){
                         Move(false, 0.07f);    //遠のく
-                        //print("遠のき");
                     }
                 //壁を挟む
                 }else{
                     toward *= -1;
                     if (30 - Mathf.Abs(mx - ex) < maai - 1){
                         Move(false, 0.07f);  //近づく
-                        //print("壁近づき");
                     }else if (30 - Mathf.Abs(mx - ex) > maai + 1){
                         Move(true, 0.07f);    //遠のく
-                        //print("壁遠のき");
                     }
                 }
                 
@@ -120,48 +158,12 @@ class CPUScript : MonoBehaviour {
                 }
             }
         }
-        else{
-           //Handheld.Vibrate ();
-           ComonScript.Shaking();
-			kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8.0f,8.0f),Random.Range(4.0f,16.0f)), Kuso.GetComponent<ShotScript>());
-			t++;
-			if (t == 100){
-				for (t=100;t<180;t++){
-                    kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8.0f,8.0f),Random.Range(4.0f,16.0f)), Kuso.GetComponent<ShotScript>());
-                }
-                Destroy(gameObject);
-            }
-        }
-
-            //ジャンプ猶予
+        //ジャンプ猶予
         if (jtime >= 0)
             jtime--;
-
-            /*
-                    float mx1 = Input.GetAxis("Horizontal");
-                    if (dead == false){
-                        if (jump == true){
-
-                            if (Input.GetButtonUp("Jump")){
-                                Jump();
-                            }
-                            transform.position += new Vector3(mx1*0.05f,0,0);
-                        }
-                        if (Input.GetButtonUp("Fire1"))
-                            Shot();
-                    }
-            */
-        
-    }
-
-    void Shot (int id) {
-        auso.PlayOneShot(bomb);
-        manager.GetComponent<ShotManageScript>().Fire(id, -1, transform.position, new Vector2(0,0), Bullet.GetComponent<ShotScript>());
     }
 
 	void Jump () {
-        //自殺防止
-        //if (((mx<=15)&&(toward == -1))||((mx>=-15)&&(toward == 1))){
         //難易度分岐
         auso.PlayOneShot(pyon);
         if(ComonScript.nanid == 0)
@@ -173,59 +175,60 @@ class CPUScript : MonoBehaviour {
 		jump = false;
 	}
 
+    void Shot (int id) {
+        auso.PlayOneShot(bomb);
+        manager.GetComponent<ShotManageScript>().Fire(id, -1, transform.position, new Vector2(0,0), Bullet.GetComponent<ShotScript>());
+    }
+
 	void Death () {
-        if(dead == false)
+        if(dead == false){
             auso.PlayOneShot(bobobo);
+            //カメラネガ
+			Camera.main.GetComponent<PP>().enabled = true;
+        }
         rb2d.isKinematic = false;
 		dead = true;
 	}
 
 	void Move (bool x,float y) {
 		if (x == true){			//近づく
-			if (toward == 1){	//右向き
-				transform.position += Vector3.right * y;
-			}else{				//左向き
-				transform.position += Vector3.left * y;
-			}
+			transform.position += Vector3.right * y * toward;
 		}else{					//遠のく
-			if (toward == 1){	//右向き
-				transform.position += Vector3.left * y;
-			}else{				//左向き
-				transform.position += Vector3.right * y;
-			}
+			transform.position += Vector3.left * y * toward;
 		}
 	}
 
     //地面との接触判定
 	void OnCollisionEnter2D (Collision2D obj) {
-        if (obj.gameObject.name != "Head") {
-            auso.PlayOneShot(tyakuti);
-            if ((dead == false)&&(obj.gameObject.tag == "ground")){
-                jump = true;
-                if(ComonScript.nanid == 0)
-                    jtime = Random.Range (30,50);
-                if(ComonScript.nanid == 1)
-                    jtime = Random.Range (15,35);
-                if(ComonScript.nanid == 2)
-                    jtime = 0;
-            }
+        this.auso.PlayOneShot(this.tyakuti);
+		if ((dead == false)&&(obj.gameObject.tag == "ground")){
+            jump = true;
+            if(ComonScript.nanid == 0)
+                jtime = Random.Range (30,50);
+            if(ComonScript.nanid == 1)
+                jtime = Random.Range (15,35);
+            if(ComonScript.nanid == 2)
+                jtime = 0;
         }
+		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) < 1f){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x,0);
+		}
+		//バウンドの大きさによっては打ち切る
+		//着地エフェクトを出す
+		Instantiate((GameObject)Resources.Load("Chakuchi"),transform.position + new Vector3(0,-1f,-1f),Quaternion.identity);
 	}
 
-    void OnTriggerEnter2D(Collider2D obj)
-    {
+    void OnTriggerEnter2D(Collider2D obj){
         var projectile = obj.GetComponent<ShotScript>();
-        if (obj.gameObject.name == "WarpL")
-        {
-            transform.position += Vector3.right * 25.0f;
-            //rb2d.velocity = new Vector3(rb2d.velocity.x, rb2d.velocity.y, 0);
+        if (obj.gameObject.name == "WarpL"){
+            transform.position += Vector3.right * 24.5f;
         }
-        if (obj.gameObject.name == "WarpR")
-        {
-            transform.position += Vector3.left * 25.0f;
-            //rb2d.velocity = new Vector3(rb2d.velocity.x, rb2d.velocity.y, 0);
+        if (obj.gameObject.name == "WarpR"){
+            transform.position += Vector3.left * 24.5f;
         }else if (obj.gameObject.name == "Death"){
-			Destroy(gameObject);
+			if (this.manager.GetComponent<PvpScript>() != null)
+				this.manager.GetComponent<PvpScript>().someonesdeath = true;
+			DestroyImmediate(base.gameObject, true);
 		}
         if (projectile.OwnerId != -1) {
             Death();

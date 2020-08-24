@@ -187,6 +187,7 @@
      <Compile Include="Assets\Scripts\Chara1Script.cs" />
      <Compile Include="Assets\TouchScript\Scripts\Gestures\TransformGestures\PinnedTransformGesture.cs" />
      <Compile Include="Assets\TouchScript\Scripts\LayerManager.cs" />
+     <Compile Include="Assets\Scripts\CPUTitleScript.cs" />
      <None Include="Assets\Shaders\_Project\Shaders\_Other\Outline.shader" />
      <None Include="Assets\Shaders\_Project\Shaders\Replacement\RampLighting.shader" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
