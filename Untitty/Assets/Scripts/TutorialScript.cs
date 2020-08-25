@@ -70,6 +70,12 @@ public class TutorialScript : MonoBehaviour
                 but5 = true;
             }
             if(sndbg == null){
+                Camera.main.transform.position -= (Camera.main.transform.position - Vector3.zero + Vector3.forward * 10)/10;
+                if(Camera.main.orthographicSize < 5f){
+                    Camera.main.orthographicSize += 0.2f;
+                }else if(Camera.main.orthographicSize > 7f){
+                    Camera.main.orthographicSize = 5f;
+                }
                 if(but6 == false){
                     t = 651;
                     but6 = true;

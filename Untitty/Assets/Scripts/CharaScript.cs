@@ -11,9 +11,10 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
     //ゲームオブジェクト(リソース)
 	public GameObject Bullet;
 	public GameObject Kuso;
+	public GameObject Chakuti;
     //ゲームオブジェクト(フィールド)
-	private GameObject manager;
-	private GameObject kusodas;
+	public GameObject manager;
+	public GameObject kusodas;
 	public GameObject touch;
     //ＳＥ
     public AudioClip pyon;
@@ -39,6 +40,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	{
 		this.rb2d = base.GetComponent<Rigidbody2D>();
 		this.auso = base.GetComponent<AudioSource>();
+		Chakuti = (GameObject)Resources.Load("Chakuchi");
 		this.manager = GameObject.FindWithTag("Manager");
 		this.touch = GameObject.Find("TouchManager");
 		this.kusodas = GameObject.Find("Kusodas");
@@ -187,7 +189,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 		}
 		//バウンドの大きさによっては打ち切る
 		//着地エフェクトを出す
-		Instantiate((GameObject)Resources.Load("Chakuchi"),transform.position + new Vector3(0,-1f,-1f),Quaternion.identity);
+		kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero, Chakuti.GetComponent<ShotScript>());
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision){

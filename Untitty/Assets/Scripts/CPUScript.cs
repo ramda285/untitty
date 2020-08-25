@@ -8,9 +8,10 @@ class CPUScript : MonoBehaviour {
     AudioSource auso;
 	public GameObject Bullet;
     public GameObject Kuso;
+    public GameObject Chakuti;
 	GameObject enemy;
-    GameObject manager;
-    GameObject kusodas;
+    public GameObject manager;
+    public GameObject kusodas;
     public AudioClip pyon;
     public AudioClip tyakuti;
     public AudioClip bomb;
@@ -20,7 +21,7 @@ class CPUScript : MonoBehaviour {
     public int mtime = 0; //間合い変更
 	public int hani = 10;	//敵察知範囲
     float mx,my,ex,ey;  //位置の特定
-    bool jump = false , dead = false;
+    public bool jump = false , dead = false;
 	int toward = 1;	//向き
 	int Sroop = 0;	//発射速度
 	int jtime = 0;	//ジャンプ猶予
@@ -80,6 +81,8 @@ class CPUScript : MonoBehaviour {
 			}
 			return;
 		}else{
+            if (ComonScript.nanid == 3) return;
+            print(ComonScript.nanid);
             //m：自機（こいつ）、e：敵機（プレイヤー）
             mx = transform.position.x;
             my = transform.position.y;
@@ -215,7 +218,7 @@ class CPUScript : MonoBehaviour {
 		}
 		//バウンドの大きさによっては打ち切る
 		//着地エフェクトを出す
-		Instantiate((GameObject)Resources.Load("Chakuchi"),transform.position + new Vector3(0,-1f,-1f),Quaternion.identity);
+		kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero, Chakuti.GetComponent<ShotScript>());
 	}
 
     void OnTriggerEnter2D(Collider2D obj){

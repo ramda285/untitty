@@ -26,6 +26,7 @@ public class TitleScript : MonoBehaviourPunCallbacks {
         if(GameObject.Find("Comon(Clone)") == null){
             Instantiate(ComonO);
         }
+        //チュートリアルに飛ぶ
         //PlayerPrefs.DeleteAll();
         PhotonNetwork.ConnectUsingSettings();
         audio = GetComponent<AudioSource>();

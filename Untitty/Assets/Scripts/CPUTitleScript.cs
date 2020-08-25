@@ -9,6 +9,7 @@ class CPUTitleScript : MonoBehaviour {
     AudioSource auso;
 	public GameObject Bullet;
     public GameObject Kuso;
+    public GameObject Chakuti;
     public GameObject manager;
     public GameObject kusodas;
     public AudioClip pyon;
@@ -34,6 +35,7 @@ class CPUTitleScript : MonoBehaviour {
         manager = GameObject.Find("Tamadas");
         kusodas = GameObject.Find("Kusodas");
         number = TitleScript.kusosum;
+        jtime = Random.Range (150,400);
 	}
 
     public void Update(){
@@ -125,7 +127,7 @@ class CPUTitleScript : MonoBehaviour {
 		}
 		//バウンドの大きさによっては打ち切る
 		//着地エフェクトを出す
-		Instantiate((GameObject)Resources.Load("Chakuchi"),transform.position + new Vector3(0,-1f,-1f),Quaternion.identity);
+		kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero, Chakuti.GetComponent<ShotScript>());
 	}
 
     void OnTriggerEnter2D(Collider2D obj){
