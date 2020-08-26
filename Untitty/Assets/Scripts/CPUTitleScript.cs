@@ -11,7 +11,9 @@ class CPUTitleScript : MonoBehaviour {
     public GameObject Kuso;
     public GameObject Chakuti;
     public GameObject manager;
-    public GameObject kusodas;
+    GameObject ShotM;
+	GameObject ChakuchiM;
+	GameObject HisanM;
     public AudioClip pyon;
     public AudioClip tyakuti;
     public AudioClip bomb;
@@ -32,8 +34,10 @@ class CPUTitleScript : MonoBehaviour {
 	void Awake () {
 		rb2d = GetComponent<Rigidbody2D>();
         auso = GetComponent<AudioSource>();
-        manager = GameObject.Find("Tamadas");
-        kusodas = GameObject.Find("Kusodas");
+        manager = GameObject.FindWithTag("Manager");
+        ShotM = manager.transform.GetChild(0).gameObject;
+		ChakuchiM = manager.transform.GetChild(1).gameObject;
+		HisanM = manager.transform.GetChild(2).gameObject;
         number = TitleScript.kusosum;
         jtime = Random.Range (150,400);
 	}
@@ -42,12 +46,12 @@ class CPUTitleScript : MonoBehaviour {
         if (dead){
 			//時間
 			this.t+=Time.deltaTime*60;
-			kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+			HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 			//爆散
 			if (this.t >= 100){
 				//80個のう〇こ
 				while (this.t < 180){
-					kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+					HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 					this.t++;
 				}
 				DestroyImmediate(base.gameObject, true);
@@ -96,7 +100,7 @@ class CPUTitleScript : MonoBehaviour {
 
     void Shot (int id) {
         auso.PlayOneShot(bomb);
-        manager.GetComponent<ShotManageScript>().Fire(id, number, transform.position, new Vector2(0,0), Bullet.GetComponent<ShotScript>());
+        ShotM.GetComponent<ShotManageScript>().Fire(id, number, transform.position, new Vector2(0,0));
     }
 
 	void Death () {
@@ -127,7 +131,7 @@ class CPUTitleScript : MonoBehaviour {
 		}
 		//バウンドの大きさによっては打ち切る
 		//着地エフェクトを出す
-		kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero, Chakuti.GetComponent<ShotScript>());
+		ChakuchiM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero);
 	}
 
     void OnTriggerEnter2D(Collider2D obj){

@@ -11,7 +11,9 @@ class CPUScript : MonoBehaviour {
     public GameObject Chakuti;
 	GameObject enemy;
     public GameObject manager;
-    public GameObject kusodas;
+    GameObject ShotM;
+	GameObject ChakuchiM;
+	GameObject HisanM;
     public AudioClip pyon;
     public AudioClip tyakuti;
     public AudioClip bomb;
@@ -35,7 +37,9 @@ class CPUScript : MonoBehaviour {
         auso = GetComponent<AudioSource>();
         enemy = GameObject.FindWithTag("Player1");
         manager = GameObject.FindWithTag("Manager");
-        kusodas = GameObject.Find("Kusodas");
+        ShotM = manager.transform.GetChild(0).gameObject;
+		ChakuchiM = manager.transform.GetChild(1).gameObject;
+		HisanM = manager.transform.GetChild(2).gameObject;
 	}
 
     public void Update(){
@@ -63,7 +67,7 @@ class CPUScript : MonoBehaviour {
 				Camera.main.orthographicSize -= 0.08f;
 			}else{
 				//スロー中はくそを出さない（出したらもそっと出る）
-				kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+				HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 			}
 			//爆散
 			if (this.t >= 100){
@@ -71,7 +75,7 @@ class CPUScript : MonoBehaviour {
 				Time.fixedDeltaTime = 0.02f * Time.timeScale;
 				//80個のう〇こ
 				while (this.t < 180){
-					kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+					HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 					this.t++;
 				}
 				if (this.manager.GetComponent<PvpScript>() != null){
@@ -82,7 +86,6 @@ class CPUScript : MonoBehaviour {
 			return;
 		}else{
             if (ComonScript.nanid == 3) return;
-            print(ComonScript.nanid);
             //m：自機（こいつ）、e：敵機（プレイヤー）
             mx = transform.position.x;
             my = transform.position.y;
@@ -180,7 +183,7 @@ class CPUScript : MonoBehaviour {
 
     void Shot (int id) {
         auso.PlayOneShot(bomb);
-        manager.GetComponent<ShotManageScript>().Fire(id, -1, transform.position, new Vector2(0,0), Bullet.GetComponent<ShotScript>());
+        ShotM.GetComponent<ShotManageScript>().Fire(id, -1, transform.position, new Vector2(0,0));
     }
 
 	void Death () {
@@ -218,7 +221,7 @@ class CPUScript : MonoBehaviour {
 		}
 		//バウンドの大きさによっては打ち切る
 		//着地エフェクトを出す
-		kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero, Chakuti.GetComponent<ShotScript>());
+		ChakuchiM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero);
 	}
 
     void OnTriggerEnter2D(Collider2D obj){

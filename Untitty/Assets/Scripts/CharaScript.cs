@@ -14,7 +14,10 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	public GameObject Chakuti;
     //ゲームオブジェクト(フィールド)
 	public GameObject manager;
-	public GameObject kusodas;
+	//マネージャー
+	GameObject ShotM;
+	GameObject ChakuchiM;
+	GameObject HisanM;
 	public GameObject touch;
     //ＳＥ
     public AudioClip pyon;
@@ -41,9 +44,12 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 		this.rb2d = base.GetComponent<Rigidbody2D>();
 		this.auso = base.GetComponent<AudioSource>();
 		Chakuti = (GameObject)Resources.Load("Chakuchi");
+		//manager_child:0弾、1着地、2飛散
 		this.manager = GameObject.FindWithTag("Manager");
+		ShotM = manager.transform.GetChild(0).gameObject;
+		ChakuchiM = manager.transform.GetChild(1).gameObject;
+		HisanM = manager.transform.GetChild(2).gameObject;
 		this.touch = GameObject.Find("TouchManager");
-		this.kusodas = GameObject.Find("Kusodas");
 		//ネット対戦かつ王冠もちで生成
 		if (TitleScript.minnamode && base.photonView.IsMine && PhotonScript.king == 1)
 		{
@@ -79,7 +85,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 				Camera.main.orthographicSize -= 0.08f;
 			}else{
 				//スロー中はくそを出さない（出したらもそっと出る）
-				kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+				HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position - Vector3.forward * 3 , new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 			}
 			//爆散
 			if (this.t >= 100){
@@ -87,7 +93,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 				Time.fixedDeltaTime = 0.02f * Time.timeScale;
 				//80個のう〇こ
 				while (this.t < 180){
-					kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)), Kuso.GetComponent<ShotScript>());
+					HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 					this.t++;
 				}
 				if (this.manager.GetComponent<PvpScript>() != null){
@@ -165,7 +171,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	[PunRPC]
 	public void Shot(int id, int num){
 		this.auso.PlayOneShot(this.bomb);
-		this.manager.GetComponent<ShotManageScript>().Fire(id, num, base.transform.position, this.three, this.Bullet.GetComponent<ShotScript>());
+		this.ShotM.GetComponent<ShotManageScript>().Fire(id, num, base.transform.position, this.three);
 	}
 
     [PunRPC]
@@ -189,7 +195,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 		}
 		//バウンドの大きさによっては打ち切る
 		//着地エフェクトを出す
-		kusodas.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero, Chakuti.GetComponent<ShotScript>());
+		ChakuchiM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position + new Vector3(0,-1f,-1f) , Vector2.zero);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision){

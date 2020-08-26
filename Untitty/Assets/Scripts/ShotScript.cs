@@ -4,25 +4,27 @@ public class ShotScript : MonoBehaviour{
     public int OwnerId { get; private set; } // 弾を発射したプレイヤーのID
     public bool Equals(int id, int ownerId) => id == Id && ownerId == OwnerId;
     public bool IsActive => gameObject.activeSelf;
-    float t=0;
+    GameObject manager;
+    float t;
 
     public void Activate(int id, int ownerId, Vector3 origin, Vector2 three) { // メソッド名変更
+        //threeはうんこ３の能力（上に撃つ）
+        t = 0;
         Id = id;
         OwnerId = ownerId;
         transform.position = origin;
         gameObject.SetActive(true);
         GetComponent<Rigidbody2D>().AddForce(three * 100);
+        manager = transform.parent.gameObject;
     }
     
     public void OnUpdate() { 
         // publicにしてメソッド名変更
         t += Time.deltaTime;
-        if(t >= 10) Deactivate();
-        if(this.gameObject.name == "Chakuchi(Clone)"){
-            if(t >= 2.5) Deactivate();
-            print("yyyy");
+        if((this.gameObject.name == "Chakuchi(Clone)" && t >= 2.5) || t >= 10){
+            Deactivate();
+            t = 0;
         }
-        print("aaaa");
     }
     
     public void Deactivate() {
