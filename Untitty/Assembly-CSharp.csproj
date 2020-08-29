@@ -225,6 +225,7 @@
      <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
      <None Include="Assets\TouchScript\Shaders\Cursor.shader" />
      <None Include="Assets\TouchScript\Shaders\DebugMultiplyDepthTest.shader" />
+     <None Include="Assets\Misc\Sprites-Custom.shader" />
      <None Include="Assets\Shaders\_Project\Shaders\PostProcessing\Outline.shader" />
      <None Include="Assets\Shaders\_Project\Shaders\Tex\TexAlphaUV.shader" />
      <None Include="Assets\Shaders\_Project\Shaders\Tex\TexAlpha.shader" />
@@ -235,6 +236,7 @@
      <None Include="Assets\Shaders\_Project\Shaders\Toon\Toon.shader" />
      <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
      <None Include="Assets\Shaders\_Project\Shaders\Tex\Tex.shader" />
+     <None Include="Assets\Misc\Sprites-Default.shader" />
      <None Include="Assets\Shaders\_Project\Shaders\PostProcessing\DepthWave.shader" />
      <None Include="Assets\TouchScript\Shaders\DebugMultiplyNoDepthTest.shader" />
      <None Include="Assets\Shaders\_Project\Shaders\Tex\TexAlphaRepeat.shader" />

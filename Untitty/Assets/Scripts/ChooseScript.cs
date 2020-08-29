@@ -4,18 +4,18 @@ using UnityEngine.UI;
 public class ChooseScript : MonoBehaviour
 {
     //パネルスイッチ
-    bool dl;
+    static public bool dl;
     //選んだキャラ
-    public static int chara;
+    static public int chara;
     private int scene;
-    public GameObject nameg, specialg, modoru, flash;
+    public GameObject nameg, specialg, modoru;
     public float aglx,jmpx,atkx;
     RectTransform rect;
     private Text name, special;
     float toward;
     float moves;
-    int t,fc;
-    public bool n,n2;       //頭悪いスイッチ管理
+    int t;
+    public bool n,n2;       //頭悪いスイッチ管理 n:決定、n2:フリック限度？
     new private AudioSource audio;
     public AudioClip select, kime;
     // Start is called before the first frame update
@@ -25,7 +25,6 @@ public class ChooseScript : MonoBehaviour
         n = false;
         n2 = true;
         t = 50;
-        fc = 0;
         chara = 64;
         moves = 0;
         toward = 1;
@@ -39,12 +38,6 @@ public class ChooseScript : MonoBehaviour
     void Update()
     {
         ComonScript.Getting(dl,scene);
-        
-        //フラッシュ
-        flash.GetComponent<SpriteRenderer>().color = new Color(255,255,255,fc/20f);
-        if(n == true){
-            fc--;
-        }
         //移動距離
         if(t>=0){
             GestureScript.flick = 0;
@@ -142,7 +135,6 @@ public class ChooseScript : MonoBehaviour
 
         if(GestureScript.tap == 1 && n==false){
             dl = true;
-            fc = 20;
             audio.PlayOneShot(kime);
             n = true;
             if (TitleScript.minnamode){
