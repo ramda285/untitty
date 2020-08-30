@@ -54,6 +54,7 @@ class CPUTitleScript : MonoBehaviour {
 					HisanM.GetComponent<ShotManageScript>().Fire(15, -2, transform.position, new Vector2(Random.Range(-8f, 8f), Random.Range(4f, 16f)));
 					this.t++;
 				}
+                TitleScript.bonse = true;
 				DestroyImmediate(base.gameObject, true);
 			}
 			return;

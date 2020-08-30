@@ -157,7 +157,6 @@
      <Compile Include="Assets\TouchScript\Scripts\Devices\Display\GenericDisplayDevice.cs" />
      <Compile Include="Assets\Shaders\_Project\Scripts\PostProcessing\PPBlur.cs" />
      <Compile Include="Assets\TouchScript\Scripts\Behaviors\Cursors\TouchCursor.cs" />
-     <Compile Include="Assets\Scripts\ChakuchiScript.cs" />
      <Compile Include="Assets\TouchScript\Scripts\Devices\Display\DisplayDevice.cs" />
      <Compile Include="Assets\TouchScript\Scripts\InputSources\InputHandlers\TouchHandler.cs" />
      <Compile Include="Assets\TouchScript\Scripts\Utils\PointerUtils.cs" />

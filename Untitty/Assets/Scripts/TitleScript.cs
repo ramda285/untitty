@@ -6,6 +6,7 @@ using Photon.Pun;
 public class TitleScript : MonoBehaviourPunCallbacks {
     float t;      //文字の回転、
     bool dl;         //明るくする
+    public static bool bonse;       //爆発音
     public int kusofall = 0;       //くそを落とす時間
     public static int kusosum = 0;      //くその合計
     static bool first = false;  //インサート文の表示
@@ -14,7 +15,8 @@ public class TitleScript : MonoBehaviourPunCallbacks {
     public GameObject hitori, minna, config, insart;    //各ボタン
     public GameObject ComonO;   //ComonGameObject
     public GameObject Kuso;
-    new AudioSource audio;
+    public AudioSource audio;
+    public AudioSource bon;
     //selectmodeについて・・・0,ひとり　1,みんな　2,コンフィグ
 
 	// Use this for initialization
@@ -30,6 +32,8 @@ public class TitleScript : MonoBehaviourPunCallbacks {
         //PlayerPrefs.DeleteAll();
         PhotonNetwork.ConnectUsingSettings();
         audio = GetComponent<AudioSource>();
+        bon = GetComponent<AudioSource>();
+        bonse = false;
         t = 30;
         dl = false;
 	}
@@ -43,6 +47,10 @@ public class TitleScript : MonoBehaviourPunCallbacks {
             Instantiate(Kuso, new Vector3(0, 8, 0), Quaternion.identity);
             kusofall = Random.Range(500,1200);
             kusosum++;
+        }
+        if (bonse){
+            bonse = false;
+            bon.Play();
         }
 
         //タイトルボタン

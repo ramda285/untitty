@@ -4,7 +4,6 @@ using Photon.Realtime;
 using UnityEngine.UI;
 
 public class PhotonScript : MonoBehaviourPunCallbacks {
-
     public GameObject modoru, hajimeru, point, score;
     GameObject Player;
     RoomOptions room = new RoomOptions();
@@ -19,8 +18,8 @@ public class PhotonScript : MonoBehaviourPunCallbacks {
     void Start () {
         //旧バージョンでは引数必須でしたが、PUN2では不要です。
         
-        PhotonNetwork.SendRate = 20; // 1秒間にメッセージ送信を行う回数
-        PhotonNetwork.SerializationRate = 10; // 1秒間にオブジェクト同期を行う回
+        PhotonNetwork.SendRate = 40; // 1秒間にメッセージ送信を行う回数
+        PhotonNetwork.SerializationRate = 20; // 1秒間にオブジェクト同期を行う回
         //閾値　やめたほうがいいかも
         PhotonNetwork.PrecisionForVectorSynchronization = 0.00001f;
         PhotonNetwork.PrecisionForQuaternionSynchronization = 1f;

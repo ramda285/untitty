@@ -6,6 +6,7 @@ public class TutorialScript : MonoBehaviour
     private float t;
     bool dl;
     public GameObject tex, chara, touch, sndbg, ComonO;
+    public AudioSource bon;
     bool but1,but2,but3,but4,but5,but6;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class TutorialScript : MonoBehaviour
         but4 = false;
         but5 = false;
         but6 = false;
+        bon = GetComponent<AudioSource>();
         if(GameObject.Find("Comon(Clone)") == null){
             Instantiate(ComonO);
         }
@@ -32,7 +34,7 @@ public class TutorialScript : MonoBehaviour
             ComonScript.Getting(dl,0);
         if(t > 150 && but1 == false){
             tex.GetComponent<Text>().text = "右に傾けて右に移動";
-            if(chara.GetComponent<CharaAScript>().mx > 0.5){
+            if(chara.GetComponent<CharaAScript>().mx >= 5){
                 tex.GetComponent<Text>().text = "OK";
                 but1 = true;
                 t = 251;
@@ -40,7 +42,7 @@ public class TutorialScript : MonoBehaviour
         }
         if(but1 && t > 350 && but2 == false){
             tex.GetComponent<Text>().text = "左に傾けて左に移動";
-            if(chara.GetComponent<CharaAScript>().mx < -0.5){
+            if(chara.GetComponent<CharaAScript>().mx <= -5){
                 tex.GetComponent<Text>().text = "OK";
                 but2 = true;
                 t = 351;
@@ -77,6 +79,7 @@ public class TutorialScript : MonoBehaviour
                     Camera.main.orthographicSize = 5f;
                 }
                 if(but6 == false){
+                    bon.Play();
                     t = 651;
                     but6 = true;
                 }

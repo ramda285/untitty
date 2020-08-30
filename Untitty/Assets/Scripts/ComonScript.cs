@@ -6,7 +6,7 @@ public class ComonScript : MonoBehaviour
 {
     public bool DontDestroyEnabled = true;
     public static GameObject panel;
-    static float a,x;
+    static float a,x=0;
     public static float kando = 1.0f;
     public static int nanid = 1;
     public static bool shakestop = false;
@@ -16,7 +16,6 @@ public class ComonScript : MonoBehaviour
     // Use this for initialization
     void Awake () {
         a = 1;
-        x = 0;
         panel = GameObject.Find("Panel");
         transform.SetAsLastSibling();
         DontDestroyOnLoad (this);
@@ -41,6 +40,8 @@ public class ComonScript : MonoBehaviour
             }else{
                 x=0;
             }
+        }else{
+            x=0;
         }
 	}
 

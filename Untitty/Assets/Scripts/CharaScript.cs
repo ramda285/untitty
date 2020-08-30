@@ -38,6 +38,10 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	float t;
 	//シェーダーかけるフレーム
 	float cametime = 0;
+	//通信時間
+	float elapsedTime;
+	//線形補完の前、後
+	Vector3 start, end;
 
 	void Awake()
 	{
@@ -63,7 +67,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 		//死んでいる場合
 		if (this.dead){
 			//0.5秒だけネガ
-			if(cametime < 0.05f){
+			if(cametime < 0.1f){
 				cametime += Time.deltaTime;
 			}else{
 				Camera.main.GetComponent<PP>().enabled = false;
@@ -156,6 +160,10 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 			if (jump){
 				transform.position += new Vector3(mx * speed * Time.deltaTime*60, 0f, 0f);
 			}
+		}else{
+			//線形補間
+			elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, elapsedTime / 0.2f);
 		}
 	}
 
@@ -218,15 +226,15 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	}
 
 	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
-		/*もうどうしようもない
 		if (stream.IsWriting){
 			ex = this.transform.position.x;
 			stream.SendNext(ex);
 			return;
 		}else{
+			start = transform.position;
 			this.ex = (float)stream.ReceiveNext();
 			base.transform.position = new Vector3(ex,transform.position.y,0);
-			print(ex);
-		}*/
+			//print(ex);
+		}
 	}
 }
