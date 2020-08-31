@@ -26,7 +26,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	public AudioClip bobobo;
     //送信データ
 	public bool jump, dead;
-	public float mx,ex;
+	public float mx;
     private int projectileId;
     //能力
 	public Vector2 jumpvector;
@@ -41,7 +41,9 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	//通信時間
 	float elapsedTime;
 	//線形補完の前、後
-	Vector3 start, end;
+	float start, end;
+	//補間速度
+	float sendvelo;
 
 	void Awake()
 	{
@@ -67,7 +69,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 		//死んでいる場合
 		if (this.dead){
 			//0.5秒だけネガ
-			if(cametime < 0.1f){
+			if(cametime < 0.05f){
 				cametime += Time.deltaTime;
 			}else{
 				Camera.main.GetComponent<PP>().enabled = false;
@@ -157,13 +159,18 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 				this.touch.GetComponent<TouchReactScript>().jump = false;
 			}
 			//移動
+			sendvelo = mx * speed * 60f;
 			if (jump){
-				transform.position += new Vector3(mx * speed * Time.deltaTime*60, 0f, 0f);
+				transform.position += Vector3.right * sendvelo * Time.deltaTime;
 			}
 		}else{
 			//線形補間
 			elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(start, end, elapsedTime / 0.2f);
+			if(Mathf.Abs(start - end) > 20f){
+				transform.position = new Vector3(end, transform.position.y, -1);;
+			}else{
+				transform.position = new Vector3(Mathf.Lerp(start, end, elapsedTime / 0.2f), transform.position.y, -1);
+			}
 		}
 	}
 
@@ -227,14 +234,17 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 
 	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info){
 		if (stream.IsWriting){
-			ex = this.transform.position.x;
-			stream.SendNext(ex);
-			return;
+			stream.SendNext(transform.position.x);
+			stream.SendNext(sendvelo);
 		}else{
-			start = transform.position;
-			this.ex = (float)stream.ReceiveNext();
-			base.transform.position = new Vector3(ex,transform.position.y,0);
-			//print(ex);
+			start = transform.position.x;
+			float networkPosition = (float)stream.ReceiveNext();
+            float networkVelocityPerSecond = (float)stream.ReceiveNext();
+            // 送信時刻と受信時刻の差から、遅延を求める
+            var lag = Mathf.Max(0f, unchecked((float)(PhotonNetwork.ServerTimestamp - info.timestamp)) / 1000f);
+            // 現在時刻における予測座標を、補間の終了座標にする
+            end = networkPosition + networkVelocityPerSecond * lag;
+            elapsedTime = 0f;
 		}
 	}
 }

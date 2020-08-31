@@ -92,8 +92,6 @@ public class PvpScript : MonoBehaviourPunCallbacks {
             }else{
                 Playercl = PhotonNetwork.Instantiate(Player.name, new Vector3(7, 7, -1), Quaternion.identity) as GameObject;    
             }
-            //Playercl = PhotonNetwork.Instantiate(Player.name, new Vector3(Random.Range(-7f,7f), 7, -1), Quaternion.identity);
-            Playercl.tag = "Player1";
             but1 = true;
         }
         if (t > 50){
@@ -140,6 +138,14 @@ public class PvpScript : MonoBehaviourPunCallbacks {
     }
 
     public void End() {
+        if (at < 50){
+            Camera.main.transform.position -= (Camera.main.transform.position - Vector3.zero + Vector3.forward * 10)/10;
+            if(Camera.main.orthographicSize < 7f){
+                Camera.main.orthographicSize += 0.2f;
+            }else if(Camera.main.orthographicSize > 7f){
+                Camera.main.orthographicSize = 7f;
+            }
+        }
         if (at >= 100 && but2 == false)
         {
             auso.PlayOneShot(tin);
@@ -147,14 +153,11 @@ public class PvpScript : MonoBehaviourPunCallbacks {
             tm.transform.position = new Vector3(-10f, 4f, -1);
             tm.color = new Color(tm.color.r, tm.color.g, tm.color.b, 1);
 
-            if (Playercl)
-            {
+            if (Playercl){
                 PhotonScript.win++;
                 PhotonScript.cwin++;
                 tm.text = ("3uq k　ta");
-            }
-            else
-            {
+            }else{
                 PhotonScript.cwin = 0;
                 PhotonScript.king = 0;
                 tm.text = ("wg k　ta");
