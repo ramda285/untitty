@@ -1,6 +1,96 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2020.1.3f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.1.3f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
-Cmd: compileSnippet
-  api=9 type=0 insize=1202 outsize=1952 kw= pd=UNITY_NO_DXT5nm UNITY_NO_RGBM UNITY_ENABLE_REFLECTION_BUFFERS UNITY_FRAMEBUFFER_FETCH_AVAILABLE UNITY_NO_CUBEMAP_ARRAY UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF3 UNITY_NO_FULL_STANDARD_SHADER SHADER_API_MOBILE UNITY_HARDWARE_TIER1 UNITY_COLORSPACE_GAMMA UNITY_LIGHTMAP_DLDR_ENCODING dkw=UNITY_ENABLE_NATIVE_SHADOW_LOOKUPS UNITY_METAL_SHADOWS_USE_POINT_FILTERING UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_PBS_USE_BRDF2 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP UNITY_HARDWARE_TIER2 UNITY_HARDWARE_TIER3 UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_HALF_PRECISION_FRAGMENT_SHADER_REGISTERS UNITY_LIGHTMAP_RGBM_ENCODING UNITY_LIGHTMAP_FULL_HDR UNITY_VIRTUAL_TEXTURING ok=1
+Cmd: compileComputeKernel
+  api=9 insize=18301 outsize=12413 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=18301 outsize=4373 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=12109 outsize=1583 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=12109 outsize=1031 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=12109 outsize=4664 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=12109 outsize=2305 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=72903 outsize=7892 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=11985 outsize=3094 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=1391 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=1252 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=1406 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=1461 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=1262 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=815 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=800 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=763 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=34089 outsize=684 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=2747 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=2778 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=2807 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=2972 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=1672 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=1577 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=1993 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=34089 outsize=1459 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=925 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=3840 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=1345 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=1860 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=1827 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=1315 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=1686 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=1328 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=2081 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=66874 outsize=10243 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=4115 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=3873 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=3829 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=3808 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=2740 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=3089 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=4051 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=66874 outsize=6802 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=79248 outsize=35634 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=79248 outsize=6816 ok=1
+Cmd: compileComputeKernel
+  api=9 insize=79248 outsize=44833 ok=1
 
 Quitting shader compiler process

@@ -298,6 +298,24 @@
  <Reference Include="Unity.Analytics.StandardEvents">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
+ <Reference Include="Google.Protobuf">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.barracuda@1.0.2/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Burst.Unsafe">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.Abstractions">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.ml-agents@1.0.4/Plugins/System.IO.Abstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.Abstractions.TestingHelpers">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.ml-agents@1.0.4/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
+ </Reference>
+ <Reference Include="Grpc.Core">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.ml-agents@1.0.4/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Interactive.Async">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.ml-agents@1.0.4/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
  </Reference>
