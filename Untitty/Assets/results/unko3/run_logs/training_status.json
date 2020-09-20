@@ -1,0 +1,23 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 194310,
+                "file_path": "results\\unko3\\My Behavior\\My Behavior-194310.nn",
+                "reward": -0.21428571428571427,
+                "creation_time": 1599058125.1643345
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 194310,
+            "file_path": "results\\unko3\\My Behavior.nn",
+            "reward": -0.21428571428571427,
+            "creation_time": 1599058125.1643345
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.19.0",
+        "tensorflow_version": "2.3.0"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "Unko": {
+        "checkpoints": [
+            {
+                "steps": 3499940,
+                "file_path": "results\\unko8\\Unko\\Unko-3499940.nn",
+                "reward": -0.39,
+                "creation_time": 1599185925.7229662
+            },
+            {
+                "steps": 3999963,
+                "file_path": "results\\unko8\\Unko\\Unko-3999963.nn",
+                "reward": 0.452991452991453,
+                "creation_time": 1599190434.619989
+            },
+            {
+                "steps": 4499974,
+                "file_path": "results\\unko8\\Unko\\Unko-4499974.nn",
+                "reward": -0.028037383177570093,
+                "creation_time": 1599193738.5560389
+            },
+            {
+                "steps": 4999993,
+                "file_path": "results\\unko8\\Unko\\Unko-4999993.nn",
+                "reward": 0.17938931297709923,
+                "creation_time": 1599197202.2447622
+            },
+            {
+                "steps": 5006612,
+                "file_path": "results\\unko8\\Unko\\Unko-5006612.nn",
+                "reward": 0.2,
+                "creation_time": 1599197267.9428315
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5006612,
+            "file_path": "results\\unko8\\Unko.nn",
+            "reward": 0.2,
+            "creation_time": 1599197267.9428315
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.19.0",
+        "tensorflow_version": "2.3.0"
+    }
+}

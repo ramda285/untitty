@@ -23,8 +23,12 @@ public class PvpScript : MonoBehaviourPunCallbacks {
     public AudioClip donichi;
     //but1:キャラ生成、but2:、but3:
     bool but1,but2,but3;
+    float eTime;
 
     void Start () {
+        if (PhotonNetwork.IsMasterClient && !PhotonNetwork.CurrentRoom.HasStartTime()) {
+            PhotonNetwork.CurrentRoom.SetStartTime(PhotonNetwork.ServerTimestamp);
+        }
         PhotonScript.num++;
         but1 = false;
         but2 = false;
@@ -72,7 +76,13 @@ public class PvpScript : MonoBehaviourPunCallbacks {
     // Update is called once per frame
     void Update(){
         ComonScript.Getting(dl,mode);
-        t+=Time.deltaTime*60;
+        //タイミングを合わせる
+        if (t < 50){
+            if (!PhotonNetwork.CurrentRoom.TryGetStartTime(out int timestamp)) { return; }
+            eTime = Mathf.Max(unchecked(PhotonNetwork.ServerTimestamp - timestamp) / 1000f);
+        }
+        if(eTime >= 1.0f)
+            t+=Time.deltaTime*60;
         //壁
         if (t > 0 && t < 50){
             rw.transform.position += Vector3.right * 1.2f;

@@ -78,7 +78,7 @@ public class PhotonScript : MonoBehaviourPunCallbacks {
             }else{
                 room.MaxPlayers = 2;
                 room.IsOpen = true;
-                PhotonNetwork.CreateRoom(""+n, room, TypedLobby.Default);
+                PhotonNetwork.CreateRoom(""+n, RoomPropertyScript.CreateRoomOptions(""+n), TypedLobby.Default);
                 n++;
             }
             if(serching){

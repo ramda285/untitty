@@ -44,6 +44,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	float start, end;
 	//補間速度
 	float sendvelo;
+	int timelag = 0;
 
 	void Awake()
 	{
@@ -66,6 +67,7 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	}
 
 	public void Move(){
+		print(transform.position);
 		//死んでいる場合
 		if (this.dead){
 			//0.5秒だけネガ
@@ -240,9 +242,8 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 			start = transform.position.x;
 			float networkPosition = (float)stream.ReceiveNext();
             float networkVelocityPerSecond = (float)stream.ReceiveNext();
-            // 送信時刻と受信時刻の差から、遅延を求める
-            var lag = Mathf.Max(0f, unchecked((float)(PhotonNetwork.ServerTimestamp - info.timestamp)) / 1000f);
-            // 現在時刻における予測座標を、補間の終了座標にする
+            var lag = Mathf.Max(0f, unchecked((float)(PhotonNetwork.ServerTimestamp - timelag)) / 1000f);
+			timelag = PhotonNetwork.ServerTimestamp;
             end = networkPosition + networkVelocityPerSecond * lag;
             elapsedTime = 0f;
 		}

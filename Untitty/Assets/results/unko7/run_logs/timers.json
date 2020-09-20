@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1599144552",
+        "python_version": "3.8.5 (tags/v3.8.5:580fbb0, Jul 20 2020, 15:57:54) [MSC v.1924 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\ramda\\AppData\\Local\\Programs\\Python\\Python38\\Scripts\\mlagents-learn Config/ppo/Unko.yaml --run-id=unko7",
+        "mlagents_version": "0.19.0",
+        "mlagents_envs_version": "0.19.0",
+        "communication_protocol_version": "1.0.0",
+        "tensorflow_version": "2.3.0",
+        "numpy_version": "1.18.5",
+        "end_time_seconds": "1599144614"
+    },
+    "total": 61.860930200000006,
+    "count": 1,
+    "self": 0.22498230000000774,
+    "children": {
+        "run_training.setup": {
+            "total": 0.022683200000000125,
+            "count": 1,
+            "self": 0.022683200000000125
+        },
+        "TrainerController.start_learning": {
+            "total": 61.613264699999995,
+            "count": 1,
+            "self": 0.0002010999999910723,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 61.6128835,
+                    "count": 1,
+                    "self": 61.6128835
+                },
+                "TrainerController._save_models": {
+                    "total": 0.00018010000000145965,
+                    "count": 1,
+                    "self": 0.00018010000000145965
+                }
+            }
+        }
+    }
+}

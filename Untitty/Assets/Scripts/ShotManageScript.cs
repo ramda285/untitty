@@ -10,6 +10,7 @@ public class ShotManageScript : MonoBehaviour
     // 非アクティブな弾のオブジェクトプール
     private Stack<ShotScript> inactivePool = new Stack<ShotScript>();
     private ShotScript projectile;
+    static public bool shotdeath;
 
     private void Update() {
         // 逆順にループを回して、activeListの要素が途中で削除されても正しくループが回るようにする
@@ -37,7 +38,7 @@ public class ShotManageScript : MonoBehaviour
         }else{
             projectile = Instantiate(projectilePre, transform);
         }
-        projectile.Activate(id, ownerId, origin + Vector3.forward, three);
+        projectile.Activate(id, ownerId, origin + Vector3.forward + Vector3.down * 0.5f, three);
         activeList.Add(projectile);
         //print("現在プール"+inactivePool.Count);
         //print("弾番号"+id);

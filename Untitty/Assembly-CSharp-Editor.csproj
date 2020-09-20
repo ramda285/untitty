@@ -105,11 +105,23 @@
  <Reference Include="UnityEngine.Monetization">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Barracuda.MacBLAS">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Burst">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+ </Reference>
  <Reference Include="com.unity.multiplayer-hlapi.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Barracuda.Editor">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Burst.Editor">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
@@ -123,14 +135,29 @@
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Barracuda">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Barracuda.iOSBLAS">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
+ </Reference>
  <Reference Include="com.unity.multiplayer-weaver.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XR.LegacyInputHelpers">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.ML-Agents.CommunicatorObjects">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Barracuda.BurstBLAS">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Mathematics">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
@@ -147,6 +174,9 @@
  <Reference Include="Unity.VisualStudio.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.Mathematics.Editor">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
@@ -156,47 +186,17 @@
  <Reference Include="UnityEditor.XR.LegacyInputHelpers">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="com.unity.multiplayer-hlapi.Runtime">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Barracuda.MacBLAS">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Burst">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Barracuda.Editor">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Burst.Editor">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Barracuda">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Barracuda.iOSBLAS">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ML-Agents.CommunicatorObjects">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Barracuda.BurstBLAS">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Mathematics">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Mathematics.Editor">
- <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.ML-Agents.Editor">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.ML-Agents">
  <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/Unity.ML-Agents.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.multiplayer-hlapi.Runtime">
+ <HintPath>C:/Users/ramda/Documents/GitHub/untitty/Untitty/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

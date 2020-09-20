@@ -25,6 +25,9 @@ public class ShotScript : MonoBehaviour{
             Deactivate();
             t = 0;
         }
+        if(ShotManageScript.shotdeath){
+            Deactivate();
+        }
     }
     
     public void Deactivate() {
