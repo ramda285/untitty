@@ -67,7 +67,6 @@ public class CharaScript : MonoBehaviourPunCallbacks, IPunObservable
 	}
 
 	public void Move(){
-		print(transform.position);
 		//死んでいる場合
 		if (this.dead){
 			//0.5秒だけネガ

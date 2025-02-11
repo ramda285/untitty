@@ -1,9 +1,13 @@
 ﻿# うんちっち
 
-Androidアプリケーション
+Androidアプリケーション  
+<img src="Untitty/仕様書/スライド1.JPG" width="30%">
+<img src="Untitty/仕様書/スライド2.JPG" width="30%">
+<img src="Untitty/仕様書/スライド3.JPG" width="30%">
 
 ## 遊び方
-お遊びになられる際にはお手数ですが、同梱されている*Untitty.apk*を  
+Windowsにて遊ぶ際はReleasesに置かれておりますwintitty内のexeを実行してください。
+スマートフォンにて遊ぶ際にはお手数ですが、同梱されている*Untitty.apk*を  
 アンドロイド端末にダウンロードしたうえでインストールしてください  
 
 1. タイトル  
